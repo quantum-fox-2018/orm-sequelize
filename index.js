@@ -34,19 +34,25 @@ if (classCmd == 'help') {
 else if (classCmd == 'author') {
   switch (command) {
     case 'add':
-
+      ControllerAuthor.add(
+        input[3],
+        input[4],
+        input[5],
+        input[6],
+        input[7],
+      );
       break;
     case 'read_one':
-
+      ControllerAuthor.readOne(input[3]);
       break;
     case 'read_all':
-
+      ControllerAuthor.readAll();
       break;
     case 'update':
-
+      ControllerAuthor.update(input[3], input[4], input[5]);
       break;
     case 'delete':
-
+      ControllerAuthor.delete(input[3]);
       break;
     default:
   }
@@ -55,19 +61,19 @@ else if (classCmd == 'author') {
 else if (classCmd == 'tag') {
   switch (command) {
     case 'add':
-
+      ControllerTag.add(input[3]);
       break;
     case 'read_one':
-
+      ControllerTag.readOne(input[3]);
       break;
     case 'read_all':
-
+      ControllerTag.readAll();
       break;
     case 'update':
-
+      ControllerTag.update(input[3], input[4], input[5]);
       break;
     case 'delete':
-
+      ControllerTag.delete(input[3]);
       break;
     default:
   }
@@ -76,7 +82,7 @@ else if (classCmd == 'tag') {
 else if (classCmd == 'article') {
   switch (command) {
     case 'add':
-      ControllerArticle.add(input[3], input.slice(4).join(' '))
+      ControllerArticle.add(input[3], input[4], input[5] input.slice(6).join(' '))
       break;
     case 'read_one':
       ControllerArticle.readOne(input[3]);
