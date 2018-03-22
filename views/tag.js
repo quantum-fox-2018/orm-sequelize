@@ -1,3 +1,6 @@
+var Table = require('cli-table');
+const chalk = require('chalk');
+
 class ViewTag {
     static notifAdd(data){
         console.log(`Data dari View Tag :`)
@@ -21,7 +24,21 @@ class ViewTag {
 
     static readAll(data){
         console.log(`Data dari View Tag :`)
-        console.log(data)
+
+        var table = new Table({
+            head: ['No','Name']
+        , colWidths: [5, 15]
+        });
+
+        let no = 1;
+        for(let i=0; i<data.length; i++){
+            table.push(
+                [no,data[i].name]
+            );
+            no++;
+        }
+        
+        console.log(table.toString());
     }
 }
 
