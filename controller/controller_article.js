@@ -1,16 +1,16 @@
 const Models = require('../models');
-const ViewArticle = require('../view/view_article;');
+const ViewArticle = require('../view/view_article.js');
 
 class ControllerArticle {
   static add(title, idAuthor, idTag, content) {
-    Models.Articles.create({
+    Models.Article.create({
       title: title,
-      content: content
-      id_author: idAuthor,
-      id_tag: idTag
+      content: content,
+      author_id: idAuthor,
+      tag_id: idTag
     })
-    .then(newArticles => {
-      View.add(newArticles.dataValues);
+    .then(newArticle => {
+      ViewArticle.add(newArticle.dataValues);
     })
     .catch(err => {
       console.log(err);
@@ -18,7 +18,7 @@ class ControllerArticle {
   }
 
   static readOne(id) {
-    Models.Articles.findOne({
+    Models.Article.findOne({
       where: {id: id}
     })
     .then(article => {
@@ -27,7 +27,7 @@ class ControllerArticle {
   }
 
   static readAll() {
-    Models.Articles.findAll({
+    Models.Article.findAll({
       raw: true
     })
     .then(article => {
@@ -39,7 +39,7 @@ class ControllerArticle {
   }
 
   static update(id, column, values) {
-    Models.Articles.findOne({
+    Models.Article.findOne({
       where: {id: id}
     })
     .then(article => {
@@ -47,7 +47,7 @@ class ControllerArticle {
         [column]: values
       })
       .then(result => {
-        View.update(result.dataValues);
+        ViewArticle.update(result.dataValues);
       })
       .catch(err => {
         console.log(err);
@@ -56,15 +56,18 @@ class ControllerArticle {
   }
 
   static delete(id) {
-    Models.Articles.destroy({
+    Models.Article.destroy({
       where: {id: id}
     })
     .then(deleted => {
       if (deleted == 1) {
-        View.delete(`Delete data success`);
+        ViewArticle.delete(`Delete data success`);
       } else {
-        View.delete(`Delete data failed`);
+        ViewArticle.delete(`Delete data failed`);
       }
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
 }
